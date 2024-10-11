@@ -54,6 +54,7 @@ void move(int c,int R,int X,int Y)
 	}
 	else if(X>=0 && X<M && Y>=0 && Y<N && R==T && prr[X][Y]>=0)
 	{
+		printf("R=%d,c=%d,prr[%d][%d]=%d\n",R,c,X,Y,prr[X][Y]);
 		if(arr[X][Y]=='x'||arr[X][Y]=='.'||arr[X][Y]=='b'||arr[X][Y]=='A'||arr[X][Y]=='B')
 			maxx=max(maxx,c);
 		else if(arr[X][Y]=='m')
@@ -64,11 +65,13 @@ void move(int c,int R,int X,int Y)
 			maxx=max(maxx,c-1);
 		else if(arr[X][Y]=='t')
 			maxx=max(maxx,c/2);
+		printf("maxx=%d\n",maxx);
 	}
 }
 
 void random(int g,int x,int y)
 {
+	printf("g=%d,x=%d,y=%d\n",g,x,y);
 	if(g==0)
 	{
 		if(x<0 || x>=M || y-1<0 || y-1>=N||arr[x][y-1]=='x'||arr[x][y-1]=='A'||arr[x][y-1]=='B')
@@ -103,6 +106,7 @@ int main(void)
 {
 	//讀入
 	scanf("%d\n%d\n%d\n",&T,&M,&N);
+	printf("Round %d:%dX%d\n",T,M,N);
 	
 	for(int i=0;i<M;++i)
 	{
@@ -112,9 +116,11 @@ int main(void)
 	
 	int Asc,Bsc;
 	scanf("%d\n%d\n",&Asc,&Bsc);
+	printf("A=%d, B=%d\n",Asc,Bsc);
 	
 	char me[2];
 	scanf("%s",me);
+	printf("I'm %s\n",me);
 	
 	int x,y;
 	for(int i=0;i<M;++i)
@@ -128,6 +134,7 @@ int main(void)
 			}
 		}
 	}
+	printf("I'm at (%d,%d)\n",x,y);
 	//
 	
 	int z,l=-10000,r=-10000,u=-10000,d=-10000,C,ran,fn;
@@ -145,12 +152,14 @@ int main(void)
 		C=Bsc;
 		T=T/2;
 	}
+	printf("T=%d\n",T);
 	
 	//回數
 	T=T%7;
 	if(T==0)
 		T=T+7;
 	T=8-T;
+	printf("T=%d\n",T);
 	//
 	
 	z=1;
@@ -182,6 +191,7 @@ int main(void)
 		move(C,z,x+1,y);
 		d=maxx;
 	}
+	printf("(%d,%d),l=%d, r=%d, u=%d, d=%d\n",x,y,l,r,u,d);
 	
 	if(r>l && r>u && r>d)
 		printf("%s\n",ans[1]);
@@ -206,7 +216,9 @@ int main(void)
 		else
 		{
 			ran=rand()%4;
+			printf("ran=%d,f=%d\n",ran,f);
 			random(ran,x,y);
+			printf("ran=%d,f=%d\n",ran,f);
 			printf("%s\n",ans[f]);
 		}
 	}

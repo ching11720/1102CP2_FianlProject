@@ -69,6 +69,7 @@ void move(int c,int R,int X,int Y)
 
 void random(int g,int x,int y)
 {
+	printf("g=%d,x=%d,y=%d\n",g,x,y);
 	if(g==0)
 	{
 		if(x<0 || x>=M || y-1<0 || y-1>=N||arr[x][y-1]=='x'||arr[x][y-1]=='A'||arr[x][y-1]=='B')
@@ -206,7 +207,9 @@ int main(void)
 		else
 		{
 			ran=rand()%4;
+			printf("ran=%d,f=%d\n",ran,f);
 			random(ran,x,y);
+			printf("ran=%d,f=%d\n",ran,f);
 			printf("%s\n",ans[f]);
 		}
 	}
